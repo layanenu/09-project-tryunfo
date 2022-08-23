@@ -32,6 +32,7 @@ export default class Form extends Component {
               data-testid="name-input"
               value={ cardName }
               onChange={ onInputChange }
+              name="cardName"
             />
           </label>
 
@@ -41,6 +42,7 @@ export default class Form extends Component {
               data-testid="description-input"
               value={ cardDescription }
               onChange={ onInputChange }
+              name="cardDescription"
             />
           </label>
 
@@ -51,6 +53,7 @@ export default class Form extends Component {
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
+              name="cardAttr1"
             />
           </label>
 
@@ -61,6 +64,7 @@ export default class Form extends Component {
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
+              name="cardAttr2"
             />
           </label>
 
@@ -71,6 +75,7 @@ export default class Form extends Component {
               data-testid="attr3-input"
               value={ cardAttr3 }
               onChange={ onInputChange }
+              name="cardAttr3"
             />
           </label>
 
@@ -81,6 +86,7 @@ export default class Form extends Component {
               data-testid="image-input"
               value={ cardImage }
               onChange={ onInputChange }
+              name="cardImage"
             />
           </label>
 
@@ -90,6 +96,7 @@ export default class Form extends Component {
               data-testid="rare-input"
               value={ cardRare }
               onChange={ onInputChange }
+              name="cardRare"
             >
               <option>normal</option>
               <option>raro</option>
@@ -104,6 +111,7 @@ export default class Form extends Component {
               data-testid="trunfo-input"
               checked={ cardTrunfo }
               onChange={ onInputChange }
+              name="cardTrunfo"
             />
           </label>
           <button
