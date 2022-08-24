@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import PropType from 'prop-types';
 
 export default class Form extends Component {
+  validaSuperTrunfo = (verificaTrunfo) => {
+    if (!verificaTrunfo) {
+      return <p>Você já tem um Super Trunfo em seu baralho</p>;
+    }
+    return <p>Super Trybe Trunfo</p>;
+  };
+
   render() {
     const {
       cardName,
@@ -12,7 +19,7 @@ export default class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -105,14 +112,15 @@ export default class Form extends Component {
           </label>
 
           <label htmlFor="trunfo-input">
-            Super Trybe Trunfo
-            <input
+            { this.validaSuperTrunfo(hasTrunfo)}
+            { hasTrunfo
+            && <input
               type="checkbox"
               data-testid="trunfo-input"
               checked={ cardTrunfo }
               onChange={ onInputChange }
               name="cardTrunfo"
-            />
+            />}
           </label>
           <button
             type="submit"
