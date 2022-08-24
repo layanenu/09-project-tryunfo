@@ -15,6 +15,7 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      arrayDeCartas: [],
     };
   }
 
@@ -56,9 +57,25 @@ class App extends React.Component {
       }
     });
   };
-
   // O segundo parâmetro do setState pode ser usado para alguma situação que você queira que aconteça assim que o estado for atualizado, como o botão de salvar, nesse caso,
   // onde o requisito pede que o botão só seja ativado após os campos do form estarem preenchidos.
+
+  onSaveButtonClick = (objetoInfo) => {
+    this.setState((prevState) => ({
+      arrayDeCartas: [...prevState.arrayDeCartas, objetoInfo],
+    }), () => {
+      this.setState({
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: 0,
+        cardAttr2: 0,
+        cardAttr3: 0,
+        cardImage: '',
+        cardRare: '',
+        cardTrunfo: false,
+      });
+    });
+  };
 
   render() {
     const {
@@ -86,6 +103,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
@@ -103,20 +121,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// if (
-//   cardName
-//   && cardDescription
-//   && cardAttr1
-//   && cardAttr2
-//   && cardAttr3
-//   && cardImage
-//   && cardRare
-//   && cardTrunfo) {
-//   this.setState({
-//     isSaveButtonDisabled: false, // false
-//   });
-// } else {
-//   this.setState({
-//     isSaveButtonDisabled: true, // true
-//   });
