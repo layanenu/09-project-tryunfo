@@ -14,6 +14,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
+      isSaveButtonDisabled: true,
     };
   }
 
@@ -26,8 +27,38 @@ class App extends React.Component {
     const value = type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
+    }, () => {
+      const {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+      } = this.state;
+      const numeroNoventa = 90;
+      const numeroDuzentosEDez = 210;
+      const somaDosAtributos = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+      if (
+        cardName && cardDescription && cardImage && cardRare
+        && cardAttr1 >= 0 && cardAttr1 <= numeroNoventa
+        && cardAttr2 >= 0 && cardAttr2 <= numeroNoventa
+        && cardAttr3 >= 0 && cardAttr3 <= numeroNoventa
+        && somaDosAtributos <= numeroDuzentosEDez) {
+        this.setState({
+          isSaveButtonDisabled: false,
+        });
+      } else {
+        this.setState({
+          isSaveButtonDisabled: true,
+        });
+      }
     });
   };
+
+  // O segundo parâmetro do setState pode ser usado para alguma situação que você queira que aconteça assim que o estado for atualizado, como o botão de salvar, nesse caso,
+  // onde o requisito pede que o botão só seja ativado após os campos do form estarem preenchidos.
 
   render() {
     const {
@@ -39,6 +70,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      isSaveButtonDisabled,
     } = this.state;
     return (
       <div>
@@ -53,6 +85,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
         />
         <Card
           cardName={ cardName }
@@ -70,3 +103,20 @@ class App extends React.Component {
 }
 
 export default App;
+
+// if (
+//   cardName
+//   && cardDescription
+//   && cardAttr1
+//   && cardAttr2
+//   && cardAttr3
+//   && cardImage
+//   && cardRare
+//   && cardTrunfo) {
+//   this.setState({
+//     isSaveButtonDisabled: false, // false
+//   });
+// } else {
+//   this.setState({
+//     isSaveButtonDisabled: true, // true
+//   });
