@@ -16,7 +16,7 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       arrayDeCartas: [],
-      hasTrunfo: true,
+      hasTrunfo: false,
     };
   }
 
@@ -62,9 +62,14 @@ class App extends React.Component {
   // onde o requisito pede que o botão só seja ativado após os campos do form estarem preenchidos.
 
   onSaveButtonClick = (objetoInfo) => {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
     this.setState((prevState) => ({
       arrayDeCartas: [...prevState.arrayDeCartas, objetoInfo],
-      hasTrunfo: false,
     }), () => {
       this.setState({
         cardName: '',

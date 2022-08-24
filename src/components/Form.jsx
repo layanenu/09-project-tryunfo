@@ -4,9 +4,8 @@ import PropType from 'prop-types';
 export default class Form extends Component {
   validaSuperTrunfo = (verificaTrunfo) => {
     if (!verificaTrunfo) {
-      return <p>Você já tem um Super Trunfo em seu baralho</p>;
+      return <p>Super Trybe Trunfo</p>;
     }
-    return <p>Super Trybe Trunfo</p>;
   };
 
   render() {
@@ -113,8 +112,7 @@ export default class Form extends Component {
 
           <label htmlFor="trunfo-input">
             { this.validaSuperTrunfo(hasTrunfo)}
-            { hasTrunfo
-            && <input
+            { hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p> : <input
               type="checkbox"
               data-testid="trunfo-input"
               checked={ cardTrunfo }
